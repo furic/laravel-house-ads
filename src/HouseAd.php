@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Furic\HouseAds;
 
 use Illuminate\Database\Eloquent\Model;
 

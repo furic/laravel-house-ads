@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Furic\HouseAds;
 
-use App\HouseAd;
+use HouseAd;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

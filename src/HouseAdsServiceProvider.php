@@ -1,6 +1,6 @@
 <?php
 
-namespace Furic\RedeemCodes;
+namespace Furic\HouseAds;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -15,12 +15,8 @@ class HouseAdsServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/routes.php');
         $this->loadMigrationsFrom(__DIR__.'/migrations');
-        $this->loadViewsFrom(__DIR__.'/views', 'redeemcodes');
-        $this->publishes([
-            __DIR__.'/views' => base_path('resources/views/furic/redeemcodes'),
-        ]);
         // $this->publishes([
-        //     __DIR__ . '/../config/redeemcodes.php' => config_path('redeemcodes.php'),
+        //     __DIR__ . '/../config/house-ads.php' => config_path('house-ads.php'),
         // ]);
     }
 
@@ -31,10 +27,9 @@ class HouseAdsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make('furic\redeemcodes\RedeemCodeController');
-        $this->app->make('furic\redeemcodes\RedeemController');
+        $this->app->make('furic\houseads\HouseAdsController');
         // $this->mergeConfigFrom(
-        //     __DIR__ . '/../config/redeemcodes.php', 'redeemcodes'
+        //     __DIR__ . '/../config/house-ads.php', 'house-ads'
         // );
     }
 }
