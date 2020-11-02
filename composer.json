@@ -1,0 +1,37 @@
+{
+    "name": "furic/house-ads",
+    "description": "RESTful API serving the house ads to your client app. ",
+    "keywords": [
+    "house ads",
+    "in-house ads",
+    "cross promo",
+        "laravel",
+        "php"
+    ],
+    "homepage": "https://github.com/furic/laravel-house-ads",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Richard Fu",
+            "email": "fur@richardfu.net"
+        }
+    ],
+    "require": {
+        "php" : "^7.2",
+        "laravel/framework": "~5.8||~6.0||~7.0||~8.0",
+        "furic/game-essentials": "^0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Furic\\HouseAds\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "furic\\houseads\\HouseAdsServiceProvider"
+            ]
+        }
+    }
+}
