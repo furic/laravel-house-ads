@@ -6,12 +6,12 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/furic/laravel-house-ads/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/furic/laravel-house-ads/?branch=main)
 [![Build Status](https://scrutinizer-ci.com/g/furic/laravel-house-ads/badges/build.png?b=main)](https://scrutinizer-ci.com/g/furic/laravel-house-ads/build-status/main)
 
-> House Ads validator for [Laravel 5.*](https://laravel.com/). I developed this package while working for a house ads solution in [Sweaty Chair Studio](https://www.sweatychair.com) serving house ads for players. This contains API for redeem code validation and a `(coming soon) simple web console to create and edit the house ads`. This package is aimed to be a plug-n-play solution, to serve your own house ads within your apps, cross-promo another apps, or even showing a running events. 
+> House Ads manager for [Laravel 5.*](https://laravel.com/). I developed this package while working for a house ads solution in [Sweaty Chair Studio](https://www.sweatychair.com) serving house ads to players. This contains API for redeem code validation and a `(coming soon) simple web console to create and edit the house ads`. This package is aimed to be a plug-n-play solution, to serve your own house ads within your apps, cross-promo another apps, or even showing running events. 
 
-> Only one house ad shown on each time client app launch, if there are more than one to show, show the highest priority one. A clicked house ad (successfully redirected) will not shown again:
+> Only one house ad shown on each time client app launch, if there are more than one to show, show the highest priority one. A clicked house ad (successfully redirected) will not shown again.
 ![No Humanity house ad showing in app launch](https://www.richardfu.net/wp-content/uploads/nohumanity_house_ad_portrait.jpg)
 
-> The web console is in the TODO list. Meanwhile, you will need to add the house ads into the database mannually.
+> The web console is in the TODO list. Meanwhile, you will need to add the house ads into the database manually.
 
 ## Table of Contents
 - [Installation](#installation)
