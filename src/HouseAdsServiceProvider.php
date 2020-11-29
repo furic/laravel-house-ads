@@ -13,7 +13,7 @@ class HouseAdsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->loadRoutesFrom(__DIR__.'/../api.php');
         $this->loadMigrationsFrom(__DIR__.'/migrations');
         // $this->publishes([
         //     __DIR__ . '/../config/house-ads.php' => config_path('house-ads.php'),
@@ -27,7 +27,7 @@ class HouseAdsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make('furic\houseads\HouseAdsController');
+        $this->app->make('Furic\HouseAds\HouseAdsController');
         // $this->mergeConfigFrom(
         //     __DIR__ . '/../config/house-ads.php', 'house-ads'
         // );

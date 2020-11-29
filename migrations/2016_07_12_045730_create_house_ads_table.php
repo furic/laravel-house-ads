@@ -41,6 +41,6 @@ class CreateHouseAdsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('house_ads');
+        Schema::dropIfExists('house_ads');
     }
 }
