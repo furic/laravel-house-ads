@@ -69,7 +69,7 @@ $ php artisan migrate
 | priority        | tinyint   |     ✓    |
 | start_at        | date      |     ✓    |
 | end_at          | date      |     ✓    |
-| clicked_count   | mediumint |     ✓    |
+| confirmed_count | mediumint |     ✓    |
 | cancelled_count | mediumint |     ✓    |
 | created_at      | datetime  |          |
 | updated_at      | datetime  |          |
@@ -85,7 +85,7 @@ $ php artisan migrate
 - Priority: The highest priority ad get shown in one app launch.
 - Start At: The date that this house ad start, used this to schedule future house ads.
 - End At: The date that this house ad end, used this to end promotion with a given period.
-- Clicked Count: The clicked count (successful redirect), used for analytics only.
+- Confirmed Count: The confirmed count (successful redirect), used for analytics only.
 - Cancelled Count: The cancelled count (failed redirect), used for analytics only.
 
 ### API URLs

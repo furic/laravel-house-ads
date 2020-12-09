@@ -13,20 +13,20 @@ class CreateHouseAdsTable extends Migration
      */
     public function up()
     {
-        Schema::create('house_ads', function (Blueprint $table) {
+        Schema::create('house_ads', function(Blueprint $table) {
             $table->increments('id');
 
             $table->integer('game_id')->unsigned();
             $table->string('image_portrait', 128)->nullable();
             $table->string('image_landscape', 128)->nullable();
-            $table->boolean('open_url', 128)->default('true');
+            $table->boolean('open_url')->default('true');
             $table->string('url_ios', 256)->nullable();
             $table->string('url_android', 256)->nullable();
             $table->tinyInteger('repeat_count')->unsigned()->default('1');
             $table->tinyInteger('priority')->unsigned()->default('1');
             $table->date('start_at');
             $table->date('end_at');
-            $table->mediumInteger('clicked_count')->unsigned()->default('0');
+            $table->mediumInteger('confirmed_count')->unsigned()->default('0');
             $table->mediumInteger('cancelled_count')->unsigned()->default('0');
 
             $table->timestamps();
