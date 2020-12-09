@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
 class CreateHouseAdsTable extends Migration
 {
@@ -16,17 +17,17 @@ class CreateHouseAdsTable extends Migration
             $table->increments('id');
 
             $table->integer('game_id')->unsigned();
-            $table->string('image_portrait', 128);
-            $table->string('image_landscape', 128);
-            $table->boolean('open_url', 128)->default(true);
-            $table->string('url_ios', 256);
-            $table->string('url_android', 256);
-            $table->tinyInteger('repeat_count')->unsigned();
-            $table->tinyInteger('priority')->unsigned();
+            $table->string('image_portrait', 128)->nullable();
+            $table->string('image_landscape', 128)->nullable();
+            $table->boolean('open_url', 128)->default('true');
+            $table->string('url_ios', 256)->nullable();
+            $table->string('url_android', 256)->nullable();
+            $table->tinyInteger('repeat_count')->unsigned()->default('1');
+            $table->tinyInteger('priority')->unsigned()->default('1');
             $table->date('start_at');
             $table->date('end_at');
-            $table->mediumInteger('clicked_count')->unsigned();
-            $table->mediumInteger('cancelled_count')->unsigned();
+            $table->mediumInteger('clicked_count')->unsigned()->default('0');
+            $table->mediumInteger('cancelled_count')->unsigned()->default('0');
 
             $table->timestamps();
 

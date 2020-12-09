@@ -46,11 +46,6 @@ Find the `providers` array and add our service provider.
 
 ## Configuration
 
-Publish config & migration file using Artisan command:
-```bash
-$ php artisan vendor:publish
-```
-
 To create table for redeem codes in database run:
 ```bash
 $ php artisan migrate
@@ -58,23 +53,28 @@ $ php artisan migrate
 
 ## Usage
 
-### Redeem Code Parameters
+### House Ads Table
 
-A house ad has following parameters:
 ```
-            $table->integer('game_id')->unsigned();
-            $table->string('image_portrait', 128);
-            $table->string('image_landscape', 128);
-            $table->boolean('open_url', 128)->default(true);
-            $table->string('url_ios', 256);
-            $table->string('url_android', 256);
-            $table->tinyInteger('repeat_count')->unsigned();
-            $table->tinyInteger('priority')->unsigned();
-            $table->date('start_at');
-            $table->date('end_at');
-            $table->mediumInteger('clicked_count')->unsigned();
-            $table->mediumInteger('cancelled_count')->unsigned();
+| Name            | Type      | Not Null |
+|-----------------|-----------|----------|
+| id              | integer   |     ✓    |
+| game_id         | integer   |     ✓    |
+| image_portrait  | varchar   |          |
+| image_landscape | varchar   |          |
+| open_url        | tinyint   |     ✓    |
+| url_ios         | varchar   |          |
+| url_android     | varchar   |          |
+| repeat_count    | tinyint   |     ✓    |
+| priority        | tinyint   |     ✓    |
+| start_at        | date      |     ✓    |
+| end_at          | date      |     ✓    |
+| clicked_count   | mediumint |     ✓    |
+| cancelled_count | mediumint |     ✓    |
+| created_at      | datetime  |          |
+| updated_at      | datetime  |          |
 ```
+
 - Game ID: Which game/app this house ad redirect to. This is used in client app to distingish and not showing its own house ad.
 - Portrait Iamge: The portrait image filename. The image should be uploaded and stored in `<server root>/images` folder. You can also use video and implement the playing function in client app.
 - Landscape Image: The landscape image filename.
@@ -88,7 +88,7 @@ A house ad has following parameters:
 - Clicked Count: The clicked count (successful redirect), used for analytics only.
 - Cancelled Count: The cancelled count (failed redirect), used for analytics only.
 
-### House Ads API
+### API URLs
 
 GET `<server url>/house-ads`
 Returns a JSON array containing all valid house ads.
@@ -96,8 +96,8 @@ Returns a JSON array containing all valid house ads.
 GET `<server url>/house-ads/{id}`
 Returns a JSON data continain the house ads with given ID, for debug purpose only.
 
-POST `<server url>/house-ads/{id}`
-Posts the updated data of a given ID, used for updating the clicked and cancelled count.
+PUT `<server url>/house-ads/{id}`
+Updates the clicked and cancelled count of a house ad.
 
 ### Unity Client Repo
 You can simply import this repo in Unity to communicate with your Laravel server with this package:
@@ -107,8 +107,8 @@ You can simply import this repo in Unity to communicate with your Laravel server
 
 - Create the web console to add/edit house ads and upload images.
 - Add admin login for web console.
-- Add tests.
+- Add tests and factories.
 
 ## License
 
-laravel-redeem-codes is licensed under a [MIT License](https://github.com/furic/laravel-house-ads/blob/main/LICENSE).
+laravel-house-ads is licensed under a [MIT License](https://github.com/furic/laravel-house-ads/blob/main/LICENSE).

@@ -1,4 +1,8 @@
 <?php
-$app->get('/house-ads', 'HouseAdController@index');
-$app->get('/house-ads/{id}', 'HouseAdController@show'); // For debug
-$app->put('/house-ads/{id}', 'HouseAdController@update');
+
+use Illuminate\Support\Facades\Route;
+use Furic\HouseAds\Http\Controllers\HouseAdController;
+
+Route::resource('house-ads', HouseAdController::class)->only([
+    'index', 'show', 'update'
+]);
