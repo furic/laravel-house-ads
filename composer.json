@@ -2,9 +2,9 @@
     "name": "furic/house-ads",
     "description": "RESTful API serving the house ads to your client app. ",
     "keywords": [
-    "house ads",
-    "in-house ads",
-    "cross promo",
+        "house ads",
+        "in-house ads",
+        "cross promo",
         "laravel",
         "php"
     ],

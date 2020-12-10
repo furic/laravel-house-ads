@@ -27,7 +27,7 @@ class HouseAdsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make('Furic\HouseAds\Http\Controllers\HouseAdsController');
+        $this->app->make('Furic\HouseAds\Http\Controllers\HouseAdController');
         // $this->mergeConfigFrom(
         //     __DIR__ . '/../config/house-ads.php', 'house-ads'
         // );
