@@ -9,6 +9,6 @@ class HouseAd extends Model
 
     protected $guarded = [];
 
-    protected $hidden = ['created_at', 'updated_at'];
+    protected $hidden = ['confirmed_count', 'cancelled_count', 'created_at', 'updated_at'];
 
 }

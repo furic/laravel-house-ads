@@ -99,6 +99,8 @@ Returns a JSON data continain the house ads with given ID, for debug purpose onl
 PUT `<server url>/house-ads/{id}`
 Updates the clicked and cancelled count of a house ad.
 
+API Document can be found [here](https://documenter.getpostman.com/view/2560814/TVmV6tm8#01c3056b-47d9-44d2-ac7e-e0b84a1799c0).
+
 ### Unity Client Repo
 You can simply import this repo in Unity to communicate with your Laravel server with this package:
 `<to be added>`
