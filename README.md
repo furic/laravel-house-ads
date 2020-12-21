@@ -90,13 +90,13 @@ $ php artisan migrate
 
 ### API URLs
 
-GET `<server url>/house-ads`
+GET `<server url>/api/house-ads`
 Returns a JSON array containing all valid house ads.
 
-GET `<server url>/house-ads/{id}`
+GET `<server url>/api/house-ads/{id}`
 Returns a JSON data continain the house ads with given ID, for debug purpose only.
 
-PUT `<server url>/house-ads/{id}`
+PUT `<server url>/api/house-ads/{id}`
 Updates the clicked and cancelled count of a house ad.
 
 API Document can be found [here](https://documenter.getpostman.com/view/2560814/TVmV6tm8#01c3056b-47d9-44d2-ac7e-e0b84a1799c0).
