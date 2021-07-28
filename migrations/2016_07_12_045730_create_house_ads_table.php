@@ -14,7 +14,7 @@ class CreateHouseAdsTable extends Migration
     public function up()
     {
         Schema::create('house_ads', function(Blueprint $table) {
-            $table->increments('id');
+            $table->id();
 
             $table->integer('game_id')->unsigned();
             $table->string('image_portrait', 128)->nullable();

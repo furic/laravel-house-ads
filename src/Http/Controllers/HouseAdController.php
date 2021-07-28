@@ -57,7 +57,6 @@ class HouseAdController extends Controller
 
         try {
             $houseAd = HouseAd::findOrFail($id);
-            // A check to prevent hacker to change the level owner
             if ($request->confirmed == '1') {
                 $houseAd->confirmed_count++;
             } else {
