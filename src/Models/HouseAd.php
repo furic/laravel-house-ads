@@ -15,12 +15,12 @@ class HouseAd extends Model
 
     public function getUrlImagePortraitAttribute()
     {
-        return public_path().'/images/'.$this->image_portrait;
+        return url('/images/'.$this->image_portrait);
     }
 
     public function getUrlImageLandscapeAttribute()
     {
-        return public_path().'/images/'.$this->image_landscape;
+        return url('/images/'.$this->image_landscape);
     }
 
     public function stat()
