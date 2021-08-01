@@ -26,6 +26,7 @@ class CreateHouseAdsTable extends Migration
             $table->tinyInteger('priority')->unsigned()->default('1');
             $table->date('start_at');
             $table->date('end_at');
+            $table->mediumInteger('shown_count')->unsigned()->default('0');
             $table->mediumInteger('confirmed_count')->unsigned()->default('0');
             $table->mediumInteger('cancelled_count')->unsigned()->default('0');
 

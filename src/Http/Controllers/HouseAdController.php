@@ -17,7 +17,7 @@ class HouseAdController extends Controller
      */
     public function index()
     {
-        return response(HouseAd::whereDate('start_at', '<=', date('Y-m-d'))->whereDate('end_at', '>=', date('Y-m-d'))->get(), 200);
+        return response(HouseAd::whereDate('start_at', '<=', date('Y-m-d'))->whereDate('end_at', '>=', date('Y-m-d'))->orderBy('priority', 'desc')->get(), 200);
     }
 
     /**
@@ -47,7 +47,8 @@ class HouseAdController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'confirmed' => 'required|numeric',
+            'confirmed' => 'sometimes|required|numeric',
+            'shown' => 'sometimes|required|numeric',
         ]);
         if ($validator->fails()) {
             return response([
@@ -57,10 +58,15 @@ class HouseAdController extends Controller
 
         try {
             $houseAd = HouseAd::findOrFail($id);
-            if ($request->confirmed == '1') {
-                $houseAd->confirmed_count++;
-            } else {
-                $houseAd->cancelled_count++;
+            if ($request->has('confirmed')) {
+                if ($request->confirmed == '1') {
+                    $houseAd->confirmed_count++;
+                } else {
+                    $houseAd->cancelled_count++;
+                }
+            }
+            if ($request->has('shown')) {
+                $houseAd->shown_count++;
             }
             $houseAd->save();
             return response($houseAd, 200);
