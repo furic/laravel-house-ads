@@ -7,11 +7,15 @@
 [![Build Status](https://scrutinizer-ci.com/g/furic/laravel-house-ads/badges/build.png?b=main)](https://scrutinizer-ci.com/g/furic/laravel-house-ads/build-status/main)
 
 > A simple house ads / cross-promo API for [Laravel 5.*](https://laravel.com/). This package is developed from the house ads solution in [Sweaty Chair Studio](https://www.sweatychair.com), which serving interstitial house ad images to players. This contains API for getting the current house ads and a `(coming soon) simple web console to create and edit the house ads`. This package is aimed to be a plug-n-play solution, to serve your own house ads within your apps, cross-promo another apps, or even simply showing running events.
+
 > All current house ads are feed back to client, client can pick one to show, or showing them all one-by-one. This is depends on how you want and how you setup your client. In our case, we want only 1 house ad is shown on each time client app launch, if there are more than one to show, show the highest priority one. A clicked house ad (successfully redirected) will not shown again. All these can be setup in database so you can use it for client accordingly.
+
 > You can use it for showing static image or video, display as interstitial or in-app UI box, all depends on how you setup in the client and it's out of the scope of this package, but the API setup should cover most of the cases for the clients.
 ![Institial popup showing static image on app launch, Sweaty Chair](https://i0.wp.com/www.richardfu.net/wp-content/uploads/in-house-ad-in-interstitial-popup-sweatychair.jpg)
 ![UI box showing video on menu, Voodoo](https://i2.wp.com/www.richardfu.net/wp-content/uploads/in-house-ad-in-ui-box-voodoo.jpg)
+
 > The web console is in the TODO list. Meanwhile, you will need to add the house ads into the database manually.
+
 > Step-by-step walk-through can be found [here](https://www.richardfu.net/develop-house-ads-api-with-laravel-for-mobile-app-game).
 
 ## Table of Contents
