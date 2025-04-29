@@ -6,116 +6,115 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/furic/laravel-house-ads/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/furic/laravel-house-ads/?branch=main)
 [![Build Status](https://scrutinizer-ci.com/g/furic/laravel-house-ads/badges/build.png?b=main)](https://scrutinizer-ci.com/g/furic/laravel-house-ads/build-status/main)
 
-> A simple house ads / cross-promo API for [Laravel 5.*](https://laravel.com/). This package is developed from the house ads solution in [Sweaty Chair Studio](https://www.sweatychair.com), which serving interstitial house ad images to players. This contains API for getting the current house ads and a `(coming soon) simple web console to create and edit the house ads`. This package is aimed to be a plug-n-play solution, to serve your own house ads within your apps, cross-promo another apps, or even simply showing running events.
+> A simple house ads / cross-promo API package for [Laravel 5.*](https://laravel.com/).  
+> Developed from the internal house ads system at [Sweaty Chair Studio](https://www.sweatychair.com), this package serves interstitial images or videos to users, enabling cross-promotion or event ads within apps.
 
-> All current house ads are feed back to client, client can pick one to show, or showing them all one-by-one. This is depends on how you want and how you setup your client. In our case, we want only 1 house ad is shown on each time client app launch, if there are more than one to show, show the highest priority one. A clicked house ad (successfully redirected) will not shown again. All these can be setup in database so you can use it for client accordingly.
+> This package includes an API to fetch ads, and a (coming soon) web console to create and manage them. The system is designed for plug-and-play use — whether you're showing ads on app launch or embedding them into your UI.
 
-> You can use it for showing static image or video, display as interstitial or in-app UI box, all depends on how you setup in the client and it's out of the scope of this package, but the API setup should cover most of the cases for the clients.
-![Institial popup showing static image on app launch, Sweaty Chair](https://i0.wp.com/www.richardfu.net/wp-content/uploads/in-house-ad-in-interstitial-popup-sweatychair.jpg)
-![UI box showing video on menu, Voodoo](https://i2.wp.com/www.richardfu.net/wp-content/uploads/in-house-ad-in-ui-box-voodoo.jpg)
+> Ads are served to the client, which can decide how and when to show them — e.g., show one ad on each launch or all sequentially. Click tracking and analytics support included.
 
-> The web console is in the TODO list. Meanwhile, you will need to add the house ads into the database manually.
+![Interstitial popup example - Sweaty Chair](https://i0.wp.com/www.richardfu.net/wp-content/uploads/in-house-ad-in-interstitial-popup-sweatychair.jpg)
+![UI box video ad example - Voodoo](https://i2.wp.com/www.richardfu.net/wp-content/uploads/in-house-ad-in-ui-box-voodoo.jpg)
 
-> Step-by-step walk-through can be found [here](https://www.richardfu.net/develop-house-ads-api-with-laravel-for-mobile-app-game).
+> Currently, ads must be added manually to the database.  
+> A full walkthrough is available [here](https://www.richardfu.net/develop-house-ads-api-with-laravel-for-mobile-app-game).
+
+---
 
 ## Table of Contents
+
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
-    - [House Ads Table](#house-ads-table)
-    - [API URLs](#api-urls)
-    - [Unity Client Repo](#unity-client-repo)
+  - [House Ads Table](#house-ads-table)
+  - [API URLs](#api-urls)
+  - [Unity Client Repo](#unity-client-repo)
 - [TODO](#todo)
 - [License](#license)
 
+---
+
 ## Installation
 
-Install this package via Composer:
+Install via Composer:
+
 ```bash
-$ composer require furic/house-ads
+composer require furic/house-ads
 ```
 
-> If you are using Laravel 5.5 or later, then installation is done. Otherwise follow the next steps.
-
-#### Open `config/app.php` and follow steps below:
-
-Find the `providers` array and add our service provider.
+If you're using Laravel 5.5 or later, that's all.  
+Otherwise, manually register the provider in `config/app.php`:
 
 ```php
 'providers' => [
     // ...
-    Furic\HouseAds\HouseAdsServiceProvider::class
+    Furic\HouseAds\HouseAdsServiceProvider::class,
 ],
 ```
 
+---
+
 ## Configuration
 
-To create table for redeem codes in database run:
+Run migrations to create the necessary database table:
+
 ```bash
-$ php artisan migrate
+php artisan migrate
 ```
+
+---
 
 ## Usage
 
 ### House Ads Table
 
-```
-| Name            | Type      | Not Null |
-|-----------------|-----------|----------|
-| id              | integer   |     ✓    |
-| game_id         | integer   |     ✓    |
-| media_portrait  | varchar   |          |
-| media_landscape | varchar   |          |
-| open_url        | tinyint   |     ✓    |
-| url_ios         | varchar   |          |
-| url_android     | varchar   |          |
-| repeat_count    | tinyint   |     ✓    |
-| priority        | tinyint   |     ✓    |
-| start_at        | date      |     ✓    |
-| end_at          | date      |     ✓    |
-| confirmed_count | mediumint |     ✓    |
-| cancelled_count | mediumint |     ✓    |
-| created_at      | datetime  |          |
-| updated_at      | datetime  |          |
-```
+| Column Name      | Type      | Required | Description                                  |
+|------------------|-----------|----------|----------------------------------------------|
+| id               | integer   | ✓        | Auto-incremented ID                          |
+| game_id          | integer   | ✓        | Game ID the ad promotes                      |
+| media_portrait   | varchar   |          | Portrait image/video filename                |
+| media_landscape  | varchar   |          | Landscape image/video filename               |
+| open_url         | tinyint   | ✓        | Whether the ad opens a URL                   |
+| url_ios          | varchar   |          | iOS redirect URL                             |
+| url_android      | varchar   |          | Android redirect URL                         |
+| repeat_count     | tinyint   | ✓        | How many launches to wait before repeat      |
+| priority         | tinyint   | ✓        | Priority value for sorting                   |
+| start_at         | date      | ✓        | Ad start date                                |
+| end_at           | date      | ✓        | Ad end date                                  |
+| confirmed_count  | mediumint | ✓        | Clicked count                                |
+| cancelled_count  | mediumint | ✓        | Cancelled (failed) attempts                  |
+| created_at       | datetime  |          | Timestamp                                    |
+| updated_at       | datetime  |          | Timestamp                                    |
 
-- Game ID: Which game/app this house ad redirect to. This is used in client app to distingish and not showing its own house ad.
-- Portrait Media: The portrait image/video filename. The media should be uploaded and stored in `<server root>/media` folder. You can also use video and implement the playing function in client app.
-- Landscape Media: The landscape image/video filename.
-- Open URL: Should the house ad open and URL, otherwise the client should simply show the image/video. This is mostly used for showing an event media.
-- iOS URL: The URL to open in iOS devices.
-- Android URL: The URL to open in Android devices.
-- Repeat Count: How many app launches to wait to show this ad again, for interstitial popup only.
-- Priority: The highest priority ad get shown in one app launch.
-- Start At: The date that this house ad start, used this to schedule future house ads.
-- End At: The date that this house ad end, used this to end promotion with a given period.
-- Shown Count: The shown count, used for analytics only.
-- Confirmed Count: The confirmed count (successful redirect), used for analytics only.
-- Cancelled Count: The cancelled count (failed redirect), used for analytics only.
+> Media files should be stored in the `/media` folder under your Laravel root.
 
 ### API URLs
 
-GET `<server url>/api/house-ads`
-Returns a JSON array containing all valid house ads.
+- **GET** `/api/house-ads`  
+  Returns all currently valid house ads as a JSON array.
 
-GET `<server url>/api/house-ads/{id}`
-Returns a JSON data continain the house ads with given ID, for debug purpose only.
+- **GET** `/api/house-ads/{id}`  
+  Returns a specific house ad entry (for debugging).
 
-PUT `<server url>/api/house-ads/{id}`
-Updates the shown, clicked or cancelled count of a house ad.
+- **PUT** `/api/house-ads/{id}`  
+  Updates a house ad's view/click/cancel count.
 
-API Document can be found [here](https://documenter.getpostman.com/view/2560814/TVmV6tm8#01c3056b-47d9-44d2-ac7e-e0b84a1799c0).
+Postman API documentation: [View here](https://documenter.getpostman.com/view/2560814/TVmV6tm8#01c3056b-47d9-44d2-ac7e-e0b84a1799c0)
 
 ### Unity Client Repo
-You can simply import this repo in Unity to communicate with your Laravel server with this package:
-`<to be added>`
+
+> A Unity integration repo is coming soon. Stay tuned!
+
+---
 
 ## TODO
 
-- Create the web console to add/edit house ads and upload media.
-- Add admin login for web console.
-- Add tests and factories.
+- Build web console to create/edit ads and upload media
+- Add admin authentication for the web console
+- Add test coverage and factories
+
+---
 
 ## License
 
-laravel-house-ads is licensed under a [MIT License](https://github.com/furic/laravel-house-ads/blob/main/LICENSE).
+This package is open-sourced under the [MIT License](https://github.com/furic/laravel-house-ads/blob/main/LICENSE).
